@@ -25,6 +25,51 @@ a:focus {
 }
 
 
+/**********password dialog box css************************/
+#passwordDialog {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background: #fad9b3;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1000;
+} 
+ #openDialogBtn{
+    background-color: blue;
+    color:white;
+ }
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+}
+
+h1 {
+    margin-top: 0;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
+input[type="password"], button {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px,solid,green;
+    background-color: rgb(233, 233, 233);
+}
+/**********password dialog box css end************************/
+
+
 /**********************************/
 /****** Layout with Sidebar *******/
 /**********************************/
