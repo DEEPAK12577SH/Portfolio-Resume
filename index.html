@@ -41,10 +41,11 @@
                 </div>
                 <div class="sidebar-content">
                     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                        <a href="#" class="navbar-brand">Nevigation</a>
+                       
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                         <a href="#" class="navbar-brand">Nevigation</a>
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item">
@@ -541,6 +542,7 @@
             } else {
                 alert('Incorrect password. Please try again.');
             }
+             passwordInput.value = ''; // Clear the input box after submit
         });
 
         overlay.addEventListener('click', () => {
