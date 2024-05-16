@@ -25,6 +25,15 @@
     </head>
 
     <body data-spy="scroll" data-target=".navbar" data-offset="51">
+
+        <div id="overlay"> </div>
+         <div id="passwordDialog">
+            <h1> Password:-</h1>
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button id="submitPasswordBtn">Submit</button>
+        </div>
+
+        
         <div class="wrapper">
             <div class="sidebar">
                 <div class="sidebar-header">
@@ -32,7 +41,7 @@
                 </div>
                 <div class="sidebar-content">
                     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                        <a href="#" class="navbar-brand">Navigation</a>
+                        <a href="#" class="navbar-brand">Deepak Sharma</a>
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -103,6 +112,7 @@
                                     With my unique blend of technical expertise and leadership acumen, I am poised to make a significant impact in the world of web design and beyond.
                                 </p>
                                 <a class="btn" href="#">Hire Me</a>
+                                <button id="openDialogBtn">More About Me</button>
                             </div>
                         </div>
                         <div class="row">
@@ -508,5 +518,36 @@
         
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+
+        <script>
+              const openDialogBtn = document.getElementById('openDialogBtn');
+        const passwordDialog = document.getElementById('passwordDialog');
+        const overlay = document.getElementById('overlay');
+        const submitPasswordBtn = document.getElementById('submitPasswordBtn');
+        const passwordInput = document.getElementById('passwordInput');
+
+        const correctPassword = 'Deepak123'; // Set your password here
+        const targetLink = 'index1.html'; // Set your target link here
+
+        openDialogBtn.addEventListener('click', () => {
+            passwordDialog.style.display = 'block';
+            overlay.style.display = 'block';
+        });
+
+        submitPasswordBtn.addEventListener('click', () => {
+            const enteredPassword = passwordInput.value;
+            if (enteredPassword === correctPassword) {
+                window.location.href = targetLink;
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        });
+
+        overlay.addEventListener('click', () => {
+            passwordDialog.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        </script>
     </body>
 </html>
