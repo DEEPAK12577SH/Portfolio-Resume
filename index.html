@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Resume Portfolio Deepak Sharma.</title>
+        <title>Resume Website Template Free Download</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Resume Website Template Free Download" name="keywords">
         <meta content="Resume Website Template Free Download" name="description">
@@ -26,14 +26,7 @@
 
     <body data-spy="scroll" data-target=".navbar" data-offset="51">
 
-        <div id="overlay"> </div>
-         <div id="passwordDialog">
-            <h1> Password:-</h1>
-            <input type="password" id="passwordInput" placeholder="Enter password">
-            <button id="submitPasswordBtn">Submit</button>
-        </div>
-
-        
+       
         <div class="wrapper">
             <div class="sidebar">
                 <div class="sidebar-header">
@@ -41,11 +34,10 @@
                 </div>
                 <div class="sidebar-content">
                     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                       
+                        <a href="#" class="navbar-brand">DEEPAK SHARMA</a>
                         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
-                         <a href="#" class="navbar-brand">Nevigation</a>
                         <div class="collapse navbar-collapse" id="navbarCollapse">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item">
@@ -71,9 +63,9 @@
                     </nav>
                 </div>
                 <div class="sidebar-footer">
-                    <a href="https://twitter.com/Deepaks97485770"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/@deeptech8570"><i class="fab fa-youtube"></i></a>
+                    <a href="https://freewebsitecode.com/"><i class="fab fa-twitter"></i></a>
+                    <a href="https://facebook.com/freewebsitecode"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/channel/UC9HlQRmKgG3jeVD_fBxj1Pw/videos"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
             <div class="content">
@@ -91,8 +83,17 @@
                 <!-- Large Button Start -->
                 <div class="large-btn">
                     <div class="content-inner">
-                        <a class="btn" href="https://deepak12577sh.github.io/Portfolio-Resume/#"><i class="fa fa-download"></i>Resume</a>
-                        <a class="btn" href="https://twitter.com/Deepaks97485770"><i class="fa fa-hands-helping"></i>Hire Me</a>
+                        <a class="btn" href="#" download="Myres.pdf" ><i class="fa fa-download"></i>Resume</a>
+                        <a class="btn" href="#"  id="hireMe" ><i class="fa fa-hands-helping"></i>Personal Page</a>
+                
+                        <div id="overlay" class="overlay">
+                            <div class="dialog">
+                                <h2>Enter Password</h2>
+                                <input type="password" id="password" placeholder="Password" class="input-field">
+                                <button id="submit" class="button">Submit</button>
+                            </div>
+                        </div>
+                    
                     </div>
                 </div>
                 <!-- Large Button End -->
@@ -113,7 +114,8 @@
                                     With my unique blend of technical expertise and leadership acumen, I am poised to make a significant impact in the world of web design and beyond.
                                 </p>
                                 <a class="btn" href="#">Hire Me</a>
-                                <button id="openDialogBtn">More About Me</button>
+                               
+
                             </div>
                         </div>
                         <div class="row">
@@ -234,7 +236,7 @@
                                     <h3> Codebucket Solutions Pvt. Ltd</h3>
                                     <h4>Patna, Bihar , India</h4>
                                     <h5>Graphic Designer</h5>
-                                    <p>One of the most rewarding aspects of my first experience in graphic designing technology was the sense of empowerment that came with seeing my designs come to fruition. </p>
+                                    <p>Lorem ipsum dolor sit amet elit suscipit orci. Donec molestie velit id libero.</p>
                                 </div>
                             </div>
                         </div>
@@ -446,7 +448,7 @@
                                 <div class="contact-info">
                                     <p><i class="fa fa-user"></i>DEEPAK SHARMA</p>
                                     <p><i class="fa fa-tag"></i>Web Designer & Developer</p>
-                                    <p><i class="fa fa-envelope"></i><a href="mailto:deepak3541021671@gmail.com.com">deepak3541021671@gmail.com</a></p>
+                                    <p><i class="fa fa-envelope"></i><a href="mailto:deepak3541021671@gmail.com.       ">deepak3541021671@gmail.com</a></p>
                                     <p><i class="fa fa-phone"></i><a href="tel:+91 9934512577">+91 9934512577</a></p>
                                     <p><i class="fa fa-map-marker"></i>RajendraNagar, Patna, Bihar pin-800016</p>
                     <!-- Footer Start 
@@ -495,7 +497,7 @@
                                 <p>&copy; Copyright <a href="https://deepak12577sh.github.io/Portfolio-Resume/#">Deepak Sharma</a>. All Rights Reserved.2024</p>
                             </div>
                             <div class="col-md-6">
-                                <p>Powered by <a href="https://deepak12577sh.github.io/Portfolio-Resume/#">DeepTech Web Solutions.</a></p>
+                                <p>Powered by <a href="https://deepak12577sh.github.io/Portfolio-Resume/#">DeepTech     Web Solutions.</a></p>
                             </div>
                         </div>
                     </div>
@@ -521,35 +523,29 @@
         <script src="js/main.js"></script>
 
         <script>
-              const openDialogBtn = document.getElementById('openDialogBtn');
-        const passwordDialog = document.getElementById('passwordDialog');
-        const overlay = document.getElementById('overlay');
-        const submitPasswordBtn = document.getElementById('submitPasswordBtn');
-        const passwordInput = document.getElementById('passwordInput');
+         document.getElementById('hireMe').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('overlay').style.display = 'flex';
+});
 
-        const correctPassword = 'Deepak123'; // Set your password here
-        const targetLink = 'index1.html'; // Set your target link here
+document.getElementById('submit').addEventListener('click', function() {
+    var password = document.getElementById('password').value;
+    var correctPassword = 'Deepak123'; // Replace with your actual password
 
-        openDialogBtn.addEventListener('click', () => {
-            passwordDialog.style.display = 'block';
-            overlay.style.display = 'block';
-        });
+    if (password === correctPassword) {
+        window.location.href = 'index1.html'; // Replace with your actual link
+    } else {
+        alert('Incorrect password. Please try again.');
+    }
+});
 
-        submitPasswordBtn.addEventListener('click', () => {
-            const enteredPassword = passwordInput.value;
-            if (enteredPassword === correctPassword) {
-                window.location.href = targetLink;
-            } else {
-                alert('Incorrect password. Please try again.');
-            }
-             passwordInput.value = ''; // Clear the input box after submit
-        });
-
-        overlay.addEventListener('click', () => {
-            passwordDialog.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-
+// Close overlay when clicking outside the dialog
+window.addEventListener('click', function(event) {
+    var overlay = document.getElementById('overlay');
+    if (event.target === overlay) {
+        overlay.style.display = 'none';
+    }
+});
         </script>
     </body>
 </html>
