@@ -1,179 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User List</title>
-    <style>
-        /* Some basic CSS for styling */
-        #filter {
-            margin-bottom: 10px;
-        }
-        .user-card {
-            display: flex;
-            align-items: center;
-            border: 1px solid #da16e0;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Fixed box-shadow syntax */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User List</title>
+<style>
+    /* Some basic CSS for styling */
+    #filter {
+        margin-bottom: 10px;
+    }
+    .user-card {
+        display: flex;
+        align-items: center;
+        border: 1px solid #da16e0;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .user-details {
+        flex: 1;
+    }
+    .user-details h3 {
+        margin-top: 0;
+        color: rgb(10, 158, 10);
+    }
+    p {
+        margin: 2%;
+    }
+    .user-image {
+        margin-left: 10px;
+        width: 100px;
+        height: auto;
+    }
+    .heading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #38c41c;
+        font-size: 40px;
+        padding: 0;
+        color: rgb(255, 255, 255);
+    }
+    .searchbox {
+        padding: 5px;
+        margin-top: 10px;
+        background-color: rgb(245, 233, 217);
+        border: 1px solid orange;
+    }
+    .uplbtn {
+        padding: 5px;
+        margin-right: 10px;
+        background-color: #ff8c00;
+        border: none;
+        color: white;
+    }
+    .uploadbox {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    /* CSS for small devices */
+    @media only screen and (max-width: 600px) {
+        .user-details h3 {
+            font-size: 18px;
         }
         .user-details {
-            flex: 1;
-        }
-        .user-details h3 {
-            margin-top: 0;
-            color: rgb(10, 158, 10);
-        }
-        p {
-            margin: 2%;
-        }
-        .user-image {
-            margin-left: 10px;
-            width: 100px; /* Adjust image width as needed */
-            height: auto;
-        }
-        .hide {
-            display: none;
+            font-size: 12px;
         }
         .heading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #38c41c;
-            font-size: 40px;
-            padding: 0;
-            color: rgb(255, 255, 255);
+            font-size: 20px;
         }
-        .searchbox {
-            padding: 5px;
-            margin-top: 10px;
-            background-color: rgb(245, 233, 217);
-            border: 1px solid orange;
-        }
-        .uplbtn {
-            padding: 5px;
-            margin-right: 10px;
-            background-color: #ff8c00;
-            border: none;
-            color: white;
-        }
-        .uploadbox {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        /* CSS for small devices (less than or equal to 600px width) */
-        @media only screen and (max-width: 600px) {
-            /* Your CSS styles for small devices go here */
-            .user-details h3 {
-                margin-top: 0;
-                color: rgb(10, 158, 10);
-                font-size: 18px;
-            }
-            .user-details {
-                flex: 1;
-                font-size: 12px;
-            }
-            .heading {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background-color: #38c41c;
-                font-size: 20px;
-                padding: 0;
-                color: rgb(255, 255, 255);
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="heading">
-        <p>My Guests Details</p>
-    </div>
-    <div class="uploadbox">
+    <div class="heading"> <p>Our Registered Guests Details.</p> </div>
+    <div class="uploadbox"> 
         <input type="text" id="filter" class="searchbox" placeholder="Search...">
         <a href="https://script.google.com/a/~/macros/s/AKfycby6QlpA4mC8skLfoVI0uCLJ4yjh9oPodfO1wPw3weMrj7G27LI-2lHBZIDRNz98iPn1WQ/exec">
-            <button class="uplbtn"> Upload File. </button>
+            <button class="uplbtn">Upload File</button>
         </a>
     </div>
     <div id="userList"></div>
 
 <script>
- const users = [
-     
- { name: "DEEPAK SHARMA", village: "Babuiya", amount: "551", saree:"varanasi", Image: "na"},
- { name: 'MANU SINGH', village: 'Babuiya', amount: 151, saree: 'N/A', Image: 'N/A' },
-  { name: 'VINAY SINGH', village: 'Babuiya', amount: 101, saree: 'N/A', Image: 'N/A' },
-  { name: 'GOPICHAN BHAGAT', village: 'Babuiya', amount: 100, saree: 'N/A', Image: 'N/A' },
-  { name: 'RAJAHUSEN ANSARI', village: 'Babuiya', amount: 100, saree: 'N/A', Image: 'N/A' },
-  { name: 'LAHWAR BHAGAT', village: 'Babuiya', amount: 100, saree: 'N/A', Image: 'N/A' },
-  { name: 'BIKRAM BHAGAT', village: 'Babuiya', amount: 101, saree: 'N/A', Image: 'N/A' },
-  { name: 'VIJAY RAM', village: 'Babuiya', amount: 100, saree: 'N/A', Image: 'N/A' },
-  { name: 'SULMAN GADDI', village: 'Babuiya', amount: 100, saree: 'N/A', Image: 'N/A' },
-  { name: 'BIRENDRA SHARMA', village: 'Sikata', amount: 201, saree: 'N/A', Image: 'N/A' },
-  { name: 'HARILAL PRASAD SHARMA', village: 'Barawat', amount: 300, saree: 1, Image: 'N/A' },
-  { name: 'HORIL MAHTO', village: 'Kadamwaa', amount: 501, saree: 'N/A', Image: 'N/A' },
-  { name: 'ACCHAWABAR THAKUR', village: 'Nuniyaa Tola', amount: 501, saree: 'N/A', Image: 'N/A' },
-  { name: 'SHAMBHU SHARMA', village: 'Siktaa', amount: 510, saree: 1, Image: 'N/A' },
-  { name: 'CHHATHU THAKUR', village: 'Shripur', amount: 510, saree: 'N/A', Image: 'N/A' },
-  { name: 'BRIJBIHARI DUBE', village: 'Laukariaa', amount: 1002, saree: 'N/A', Image: 'N/A' }
+const users = [
+  { name: "BIPIN SINGH", address: "Babuiyaa", amount: "101", gifts: "N", Image: "images/author1.png" },
+  { name: "PREM KUMAR PASWAN", address: "Bhelaahi", amount: "151", gifts: "N", Image: "images/author1.png" },
+  { name: "KAMESHWAR PRASAD", address: "Ramgarhwa", amount: "155", gifts: "Saree set", Image: "images/author1.png" },
+  { name: "BECHU RAM", address: "Babuiyaa", amount: "201", gifts: "N", Image: "DSC_0302.JPG" },
+  { name: "NAGESHWAR RAM", address: "Babuiyaa", amount: "200", gifts: "N", Image: "DSC_0302.JPG" },
+  { name: "LAL BIHARI MAHTO", address: "Bhelaahi", amount: "151", gifts: "N", Image: "DSC_0302.JPG" },
+  { name: "RAMANAND SHARMA", address: "Gulariyaa", amount: "500", gifts: "Saree set", Image: "images/author1.png" },
+  { name: "RAMBOL THAKUR", address: "Mahanwaa", amount: "500", gifts: "N", Image: "DSC_0302.JPG" },
+  { name: "ACCHELAL SHARMA", address: "Lakshmanwaa", amount: "501", gifts: "Suitecase set", Image: "images/author1.png" },
+  { name: "TUNNU LAL SHARMA", address: "Gahari", amount: "502", gifts: "Saree set", Image: "DSC_0302.JPG" },
+    
+  { name: 'KHUTTI GADDI', address: 'Babuiya', amount: 51, gifts: 'N', Image: 'image1.jpg' },
+  { name: 'HAWALDAAR GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image2.jpg' },
+  { name: 'BUDHAN SINGH', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image3.jpg' },
+  { name: 'SAMSUL HODA GADDI', address: 'Babuiya', amount: 200, gifts: 'N', Image: 'image4.jpg' },
+  { name: 'MAJRUL GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image5.jpg' },
+  { name: 'EKBAAL GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image6.jpg' },
+  { name: 'KAMRUL HODA GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image7.jpg' },
+  { name: 'BISHMALLAH GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image8.jpg' },
+  { name: 'MAHANT GADDI', address: 'Babuiya', amount: 110, gifts: 'N', Image: 'image9.jpg' },
+  { name: 'HADISH GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image10.jpg' },
+  { name: 'ISHRAAJ GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image11.jpg' },
+  { name: 'ISHLAAM GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+
+  { name: 'SHREE THAKUR', amount: 1000, address: 'Gadhwaa Bazaar', gifts: 'N' },
+  { name: 'JAMDAAR GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'BIRENDRA SINGH', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'ELIHASH ANSARI', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'BALISTAR SINGH', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'FULMAN GADDI', amount: 150, address: 'Babuiya', gifts: 'N' },
+  { name: 'DOMA GADDI', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'HARUN GADDI', amount: 121, address: 'East-Babuiya', gifts: 'N' },
+  { name: 'JAGAT SHARMA', amount: 1001, address: 'Dumri', gifts: '1' },
+  { name: 'KURESH GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'FARIYAAD GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'MUNNI GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'JALIL GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'RANU GADDI', amount: 151, address: 'Babuiya', gifts: 'N' },
+  { name: 'RAMBALAK SINGH', amount: 252, address: 'Babuiya', gifts: 'N' },
+  { name: 'BHANU GADDI', amount: 150, address: 'Babuiya', gifts: 'N' },
+  { name: 'MAHMUD ALAM ANSARI', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'BUDHRAM BHAGAT', amount: 251, address: 'Babuiya', gifts: 'N' },
+  { name: 'JAWAHIR RAM', amount: 501, address: 'Babuiya', gifts: 'N' },
+  { name: 'KEWAL RAM', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'KAILESH MAHTO', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'SUCKET MAHTO', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'UMESH MAHTO', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'RAIFUL GADDI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'SAGIR ANSARI', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'AMIR ANSARI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'HALIM GADDI', amount: 200, address: 'Babuiya', gifts: 'N' },
+  { name: 'HASIM ANSARI', amount: 125, address: 'Babuiya', gifts: 'N' },
+  { name: 'BABUJAN GADDI', amount: 105, address: 'W-Babuiya', gifts: 'N' },
+  { name: 'RAMJEET MAHTO', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'KALAKTAR SINGH', amount: 251, address: 'Babuiya', gifts: 'N' },
+  { name: 'SHIV BAHADUR MAHTO', amount: 111, address: 'Babuiya', gifts: 'N' },
+  { name: 'HASMULLAH ANSARI', amount: 100, address: 'Babuiya', gifts: 'N' },
+  { name: 'IMAM GADDI', amount: 102, address: 'Babuiya', gifts: 'N' },
+  { name: 'LUKHMAN GADDI', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'MANIR GADDI', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'UMESH BHAGAT', amount: 200, address: 'Babuiya', gifts: 'N' },
+  { name: 'ASHRAM SINGH', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'RAMADHAR SINGH', amount: 105, address: 'Babuiya', gifts: 'N' },
+  { name: 'JITENDRA SINGH', amount: 151, address: 'Babuiya', gifts: 'N' },
+  { name: 'MAKRUDHAN PATEL', amount: 151, address: 'Babuiya', gifts: 'N' },
+  { name: 'HAJARI SINGH', amount: 101, address: 'Babuiya', gifts: 'N' },
+  { name: 'RAJENDRA SINGH', amount: 105, address: 'Babuiya', gifts: 'N' },
+
+
+  { name: 'GUDDU SHARMA', address:'Lacchumanwa ', amount:251, gifts: 'saree set', Image: 'image12.jpg' },
+  { name: 'HARIKISHOR THAKUR ', address: 'Ramgarhwa kata ', amount: 251, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'DHARMENDRA SINGH  SARPANCH ', address: ' Parsauna tapsi ', amount: 105, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SHATRUDHAN PRASAD SINGH', address: 'PARSAUNA TAPSI ', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'ABRIALAM ', address: 'Purbi siswaniya ', amount: 205, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RAMBABU THAKUR ', address:'Lacchumanwa', amount: 501, gifts: 'SAREE', Image: 'image12.jpg' },
+  { name: 'PRABHAT SINGH ', address: 'Laukariya ', amount: 151, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BHOLA SAHRMA ', address: 'Karamwa', amount: 501, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SIKANDRA SHARMA ', address: 'Sirisiya', amount: 551, gifts: 'saree set', Image: 'image12.jpg' },
+  { name: 'RAMPARVESH SHARMA ', address: 'Lacchumanwa ', amount: 201, gifts: 'saree set ', Image: 'image12.jpg' },
+  { name: 'YOADHA YADAV', address: 'Lacchumanwa', amount: 251, gifts: 'saree', Image: 'image12.jpg' },
+  { name: 'RAMAYNGHA SAHRMA', address: 'Lacchumanwa', amount: 201, gifts: 'saree set', Image: 'image12.jpg' },
+  { name: 'YADAVLAL SHARMA ', address: 'Siswaniya', amount: 530, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SUKHRAM MAHTO', address: 'Pipra dube', amount: 501, gifts: 'saree', Image: 'image12.jpg' },
+  { name: 'SAKHICHAN BHAGAT', address: 'Babuiya', amount: 251, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SAMBHU BHAGAT', address: 'Pipra dube', amount: 551, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'HAMID GADDI', address: 'Babuiya', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'UMA THAKUR', address: 'Gad bahauri', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BISHUNDEV THAKUR', address: 'Dumri mahanawa', amount: 300, gifts: 'saree', Image: 'image12.jpg' },
+  { name: 'MAHMUD ASLAM', address: 'Siswaniya', amount: 105, gifts: 'N', Image: 'image12.jpg' },
+
+  { name: 'DEEPAK KUMAR MAHTO', address: 'Pipra debe', amount: 251, gifts: 'suitcase', Image: 'image12.jpg' },
+  { name: 'SINGHASHAN MAHTO', address: 'Pipra dube', amount: 351, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BISHUNDEV MAHTO', address: 'Pipra dube', amount: 251, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'AMIN GADDI', address: 'Siswaniya', amount: 200, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'GYANCHAN MAHTO', address: 'Babuiya', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'HADIS GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+
+  { name: 'DINESH SINGH', address: 'Parsauna tapsi', amount: 110, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SAGIR AHMED GADDI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SHIVSHUDAN GIRI', address: 'Parsauna tapsi', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'AWDESH GIRI', address: 'Parsauna tapsi', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SUBHASH YADAV', address: 'SAWNAHA', amount: 300, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'OMPRAKASH PATEL', address: 'Purendra', amount: 150, gifts: 'N', Image: 'image12.jpg' },
+
+  { name: 'SURENDRA SAH', address: 'Pipariya', amount: 250, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'JAY RAM SHARRAF', address: 'Ramgarhwa', amount: 255, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'AMLA SINGH', address: 'Babuiya', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'JAGDISH THAKUR ', address: 'Nawka tola', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'GUDDU MUKHIYA', address: 'Gad bahauri', amount: 500, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'DEEPAK KUMAR RAM FRIEND ', address: 'Ramgarhwa bazar', amount: 105, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'AJAY PRASAD BARNWAL', address:'Rmagarhwa',amount: 201, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RAMAN SINGH', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BIKHARI SHARMA', address: 'Gad bahauri', amount: 151, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RAJ NARAYAN SINGH ', address: 'Parsauna', amount: 205, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'MUKESH SINGH', address: 'Babuiya', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RAMSURAT THAKUR', address: 'Lacchumanwa', amount: 251, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'JAI GURUDEV', address: 'Ramgarhwa', amount: 102, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'NAND LAL SHARMA', address: 'Patkhauliya', amount: 500, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'KAPIL DEV THAKUR', address: 'chapra bahas', amount: 501, gifts: 'suitcase', Image: 'image12.jpg' },
+  { name: 'BADRI THAKUR', address: 'Chapra bahas', amount: 151, gifts: 'saree', Image: 'image12.jpg' },
+  { name: 'BHUTKUN', address: 'Chapra bahas', amount: 151, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BHAT THAKUR', address: 'Chapra bahas', amount: 151, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'PASPHAT THAKUR', address: 'Chapra bahas', amount: 151, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'SUGRIV SHARMA ', address: 'Lacchumanwa', amount: 500, gifts: 'sat bat,suitcase', Image: 'image12.jpg' },
+  { name: 'NAYAKLAL SHARMA', address: 'LACCHUMANWA', amount: 300, gifts: 'suitcase', Image: 'image12.jpg' },
+  { name: 'NARENDRA SAHRMA', address: 'Dumri', amount: 150, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'DWARIKA MAHTO', address: 'Babuiya', amount: 105, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'MUNNA SHARMA', address: 'Kowbarwa', amount: 502, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'DR.AMAR SINGH', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RANGILA SINGH', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+
+
+  { name: 'HARISANKAR THAKUR', address:'Babuiya nauka tola', amount: 101, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'RADHA SINGH ', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'HAIDER ALI', address: 'Babuiya', amount: 100, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'BRIJ KISHOR YADAV[purb mukhiya]', address: 'Parsauna tapsi', amount: 501, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'JITENDRA GIRI', address: 'Parsauna tapsi', amount: 500, gifts: 'N', Image: 'image12.jpg' },
+  { name: 'NAWAL SINGH ', address: 'Babiuya', amount: 101, gifts: 'N', Image: 'image12.jpg' },
 ];
- 
 
-           
-            // Add more users as needed//
+const filterInput = document.getElementById('filter');
+const userList = document.getElementById('userList');
 
-            const filterInput = document.getElementById('filter');
-        const userList = document.getElementById('userList');
+// Initial rendering of the user list
+renderUserList(users);
 
-        // Initial rendering of the user list
-        renderUserList(users);
+// Add event listener for filtering
+filterInput.addEventListener('input', () => {
+    filterData(filterInput.value.trim().toLowerCase());
+});
 
-        // Add event listener for input on the filter input
-        filterInput.addEventListener('input', () => {
-            filterData(filterInput.value.trim().toLowerCase());
-        });
+// Function to render the user list
+function renderUserList(data) {
+    userList.innerHTML = ''; // Clear previous list
 
-        // Function to render the user list based on provided data
-        function renderUserList(data) {
-            userList.innerHTML = ''; // Clear previous list
+    data.forEach(user => {
+        const userCard = document.createElement('div');
+        userCard.classList.add('user-card');
 
-            data.forEach(user => {
-                const userCard = document.createElement('div');
-                userCard.classList.add('user-card');
+        const userDetails = document.createElement('div');
+        userDetails.classList.add('user-details');
+        userDetails.innerHTML = `
+            <h3>${user.name}</h3>
+            <p>Address: ${user.address}</p>
+            <p>Amount: ${user.amount}</p>
+            <p>Gifted Things: ${user.gifts}</p>
+        `;
 
-                const userDetails = document.createElement('div');
-                userDetails.classList.add('user-details');
-                userDetails.innerHTML = `
-                    <h3>${user.name}</h3>
-                    <p>Village : ${user.village}</p>
-                    <p>Amount : ${user.amount}</p>
-                    <p>Things(सामान): ${user.saree}</p>
-                `;
+        const userImage = document.createElement('img');
+        userImage.classList.add('user-image');
+        userImage.src = user.Image ? user.Image : 'default-image.jpg'; // Fallback image
+        userImage.alt = `${user.name}'s image`;
 
-                const userImage = document.createElement('img');
-                userImage.classList.add('user-image');
-                userImage.src = user.Image !== 'N/A' ? `images/${user.Image}` : 'placeholder.jpg';
-                userImage.alt = `${user.name}'s image`;
+        userCard.appendChild(userDetails);
+        userCard.appendChild(userImage);
+        userList.appendChild(userCard);
+    });
+}
 
-                userCard.appendChild(userDetails);
-                userCard.appendChild(userImage);
-                userList.appendChild(userCard);
-            });
-        }
-
-        // Function to filter user data based on search term
-        function filterData(searchTerm) {
-            const filteredUsers = users.filter(user =>
-                user.name.toLowerCase().includes(searchTerm) ||
-                user.village.toLowerCase().includes(searchTerm) ||
-                user.amount.toString().includes(searchTerm) ||
-                user.saree.toLowerCase().includes(searchTerm)
-            );
-            renderUserList(filteredUsers);
-        }
-    </script>
+// Function to filter user data
+function filterData(searchTerm) {
+    const filteredUsers = users.filter(user =>
+        user.name.toLowerCase().includes(searchTerm) ||
+        user.address.toLowerCase().includes(searchTerm) ||
+        user.amount.toString().toLowerCase().includes(searchTerm) || // Ensure number comparison works
+        user.gifts.toLowerCase().includes(searchTerm)
+    );
+    renderUserList(filteredUsers);
+}
+</script>
 </body>
 </html>
