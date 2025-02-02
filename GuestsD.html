@@ -76,9 +76,12 @@
 </style>
 </head>
 <body>
-    <div class="heading"> <p>Our Registered Guests Details.</p> </div>
+    <div class="heading">
+        <p id="headingText">Our Registered Guests Details. </p>
+    </div>
     <div class="uploadbox"> 
         <input type="text" id="filter" class="searchbox" placeholder="Search...">
+       <p> Total: <span id="totalCount">0</span>, Searched: <span id="searchedCount">0</span></p> 
         <a href="https://script.google.com/a/~/macros/s/AKfycby6QlpA4mC8skLfoVI0uCLJ4yjh9oPodfO1wPw3weMrj7G27LI-2lHBZIDRNz98iPn1WQ/exec">
             <button class="uplbtn">Upload File</button>
         </a>
@@ -87,7 +90,7 @@
 
 <script>
 const users = [
-  { name: "BIPIN SINGH", address: "Babuiyaa", amount: "101", gifts: "N", Image: "images/author1.png" },
+{ name: "BIPIN SINGH", address: "Babuiyaa", amount: "101", gifts: "N", Image: "images/author1.png" },
   { name: "PREM KUMAR PASWAN", address: "Bhelaahi", amount: "151", gifts: "N", Image: "images/author1.png" },
   { name: "KAMESHWAR PRASAD", address: "Ramgarhwa", amount: "155", gifts: "Saree set", Image: "images/author1.png" },
   { name: "BECHU RAM", address: "Babuiyaa", amount: "201", gifts: "N", Image: "DSC_0302.JPG" },
@@ -239,6 +242,8 @@ const users = [
 
 const filterInput = document.getElementById('filter');
 const userList = document.getElementById('userList');
+const totalCount = document.getElementById('totalCount');
+const searchedCount = document.getElementById('searchedCount');
 
 // Initial rendering of the user list
 renderUserList(users);
@@ -251,6 +256,7 @@ filterInput.addEventListener('input', () => {
 // Function to render the user list
 function renderUserList(data) {
     userList.innerHTML = ''; // Clear previous list
+    totalCount.textContent = data.length; // Update total count
 
     data.forEach(user => {
         const userCard = document.createElement('div');
@@ -284,6 +290,7 @@ function filterData(searchTerm) {
         user.amount.toString().toLowerCase().includes(searchTerm) || // Ensure number comparison works
         user.gifts.toLowerCase().includes(searchTerm)
     );
+    searchedCount.textContent = filteredUsers.length; // Update searched count
     renderUserList(filteredUsers);
 }
 </script>
