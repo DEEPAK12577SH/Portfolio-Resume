@@ -9,6 +9,9 @@
     #filter {
         margin-bottom: 10px;
     }
+     #userList {
+        margin-top: 165px;}
+         /* Adjust as needed based on .sdata's height */
     .user-card {
         display: flex;
         align-items: center;
@@ -70,6 +73,16 @@
         border: #da16e0,solid,1.5px;
         padding: 5px;
         background-color: #bceebb;
+    }
+    .sdata {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white; /* Ensure background covers content */
+    z-index: 1000; /* Ensures it stays above other elements */
+    padding: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow for better visibility */
     }
     
     /* CSS for small devices */
