@@ -326,10 +326,15 @@ function renderUserList(data) {
         userDetails.classList.add('user-details');
         userDetails.innerHTML = `<h3>${user.name}</h3><p>Address: ${user.address}</p><p>Amount: ${user.amount}</p><p>Gifted Things: ${user.gifts}</p>`;
         
-        const userImage = document.createElement('img');
-        userImage.classList.add('user-image');
-        userImage.src = user.Image ? user.Image : 'default-image.jpg';
-        userImage.alt = `${user.name}'s image`;
+        //const userImage = document.createElement('img');
+        // userImage.classList.add('user-image');
+        // userImage.src = user.Image ? user.Image : 'default-image.jpg';
+       //userImage.alt = `${user.name}'s image`;
+
+         const userImage = document.createElement('img');
+         userImage.classList.add('user-image');
+         userImage.src = `images/${user.Image}`; // Use 'images/' folder prefix
+         userImage.alt = `${user.name}'s image`;
         
         userCard.appendChild(userDetails);
         userCard.appendChild(userImage);
